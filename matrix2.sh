@@ -1,4 +1,4 @@
-#!/bin/ksh
+#!/bin/bash
 
 # Functions and initialisations
 
@@ -44,7 +44,7 @@ NOR="\033[0m"       # Normal
 char_rate=50        # 0..100
 err_rate=15         # 0..100
 
-disp_speed=500        # 1..∞ 
+disp_speed=5        # 1..∞ 
 
 # Get screen size
 screen_width=$(tput cols)
