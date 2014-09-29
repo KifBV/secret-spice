@@ -19,7 +19,8 @@ function printMessage {
 typeset -n msg=$1   # Pas possible avec BASH
 for char in ${msg[@]}; do
     printf "$char"
-    usleep 50000
+    sleep .05
+    #usleep 50000
 done
 }
 
@@ -43,7 +44,7 @@ NOR="\033[0m"       # Normal
 char_rate=50        # 0..100
 err_rate=15         # 0..100
 
-disp_speed=50        # 1..∞ 
+disp_speed=500        # 1..∞ 
 
 # Get screen size
 screen_width=$(tput cols)
@@ -83,6 +84,7 @@ while true; do
         fi
         row_index=$(( row_index + 1 ))
     done
-    usleep $(( 10000000 / ${disp_speed:=50} ))
+    sleep $(( 1 / ${disp_speed:=50} ))
+    #usleep $(( 10000000 / ${disp_speed:=50} ))
     col_index=$(( col_index + 1 ))
 done
