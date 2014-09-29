@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ksh
 
 # Functions and initialisations
 
@@ -16,14 +16,10 @@ msg2=(T r a c e \\040 p r o g r a m :)
 msg3=(\\040 r u n n i n g)
 
 function printMessage {
-#typeset -n msg=$1   # Pas possible avec BASH
-declare -a msg=${!1[@]}
-#msg=$1
-#msg0=(C a l l \\040 t r a n s \\040 o p t : \\040 r e c e i v e d . \\040 9 - 1 8 - 9 9 \\040 1  4 : 3 2 : 2 1 \\040 R E C : L o g \>)
+typeset -n msg=$1   # Pas possible avec BASH
 for char in ${msg[@]}; do
     printf "$char"
- #   usleep 50000
-    sleep 0.05
+    usleep 50000
 done
 }
 
@@ -31,14 +27,11 @@ function printBanner {
     y_ref=$(( screen_width / 2 - 7 ))
     x_ref=$(( screen_height / 2 - 1 ))
     tput cup $x_ref $y_ref
-    echo  "┏━━━━━━━━━━━━━━┓"
-#    print "┏━━━━━━━━━━━━━━┓"
+    print "┏━━━━━━━━━━━━━━┓"
     tput cup $(( x_ref + 1 )) $y_ref
-    echo  "┃SYSTEM FAILURE┃"
-#    print "┃SYSTEM FAILURE┃"
+    print "┃SYSTEM FAILURE┃"
     tput cup $(( x_ref + 2 )) $y_ref
-    echo  "┗━━━━━━━━━━━━━━┛"
-#    print "┗━━━━━━━━━━━━━━┛"
+    print "┗━━━━━━━━━━━━━━┛"
 }
 
 # Change colors here
@@ -66,7 +59,7 @@ tput clear; tput cup 0 0
 # RAZ du terminal en quittant le script
 trap 'printBanner; sleep 4; clear; tput sgr0; tput cnorm; exit' 1 2 3 15
 
-printMessage $msg0; sleep 3; clear
+printMessage msg0; sleep 3; clear
 printMessage msg1; sleep 2; clear
 printMessage msg2; sleep 1
 printMessage msg3; sleep 1; clear
